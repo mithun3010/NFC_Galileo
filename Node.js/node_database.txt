@@ -1,0 +1,28 @@
+var SerialPort = require("serialport").SerialPort
+var serialPort = new SerialPort("COM5", {
+baudrate: 115200
+}, false);
+
+var sqlite3 =
+require(’sqlite3’).verbose();
+var db = sqlite3.Database(’nfc’);
+
+serialPort.open(function (error) {
+if ( error ) {
+console.log(’failed to open: ’+error);
+} else {
+console.log(’open’);
+serialPort.on("uid_data", function (data) {
+parser: serialport.parsers.readline()
+sys.puts(" "+uid_data);
+});
+
+db.serialize(function() 
+	{ db.run("CREATE TABLE nfc_data (uid TEXT)");
+	var query2 = db.prepare("SELECT * FROM nfc_data WHERE uid = (?),uid_data);
+	}
+query2.finalize();
+db.each("SELECT uid FROM nfc_data WHERE uid = (?)", uid_data, function(err,
+row) {
+console.log("Data is present in Internal Database");
+});
